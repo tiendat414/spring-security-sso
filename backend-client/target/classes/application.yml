@@ -1,0 +1,28 @@
+server: 
+  port: 8083
+spring:
+  application:
+    name: backend-client
+  security:
+    oauth2:
+      client:
+        registration:
+          message-client-oidc:
+            provider: message-client
+            client-id: message-client
+            client-secret: gENIt9021tQazZKyNDUXhTdvUoIosrkB
+            authorization-grant-type: authorization_code
+            redirect-uri: "http://api-client:8083/login/oauth2/code/{registrationId}"
+            scope: openid
+            client-name: message-client-oidc
+          message-client-authorization-code:
+            provider: message-client
+            client-id: message-client
+            client-secret: gENIt9021tQazZKyNDUXhTdvUoIosrkB
+            authorization-grant-type: authorization_code
+            redirect-uri: "http://api-client:8083/authorized"
+            scope: message.read
+            client-name: message-client-authorization-code
+        provider:
+          message-client:
+            issuer-uri: http://auth-server:8300/realms/datnt8
